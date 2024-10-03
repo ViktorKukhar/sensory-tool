@@ -1,0 +1,18 @@
+<h2>Add a New Question to <%= @template.name %></h2>
+<%= form_with model: [@template, @question], local: true do |form| %>
+  <div>
+    <%= form.label :label, "Question Label" %>
+    <%= form.text_field :label %>
+  </div>
+  <div>
+    <%= form.label :input_type, "Input Type" %>
+    <%= form.select :input_type, options_for_select([['Text', 'text'], ['Dropdown', 'dropdown'], ['Radio', 'radio']]) %>
+  </div>
+  <div>
+    <%= form.label :options, "Options (for dropdown or radio, comma-separated)" %>
+    <%= form.text_area :options %>
+  </div>
+  <div>
+    <%= form.submit "Add Question" %>
+  </div>
+<% end %>
