@@ -1,0 +1,17 @@
+<h2>Answer Questions for <%= @session.name %></h2>
+<%= form_with url: session_answers_path(@session), local: true do |form| %>
+  <% @questions.each_with_index do |question, index| %>
+    <div>
+      <%= form.label "Question #{index + 1}: #{question.label}" %>
+      <% if question.input_type == 'text' %>
+        <%= form.text_field "answers[#{index}][answer_value]" %>
+      <% elsif question.input_type == 'dropdown' || question.input_type == 'radio' %>
+        <%= form.select "answers[#{index}][answer_value]", question.options %>
+      <% end %>
+      <%= form.hidden_field "answers[#{index}][question_id]", value: question.id %>
+    </div>
+  <% end %>
+  <div>
+    <%= form.submit "Save Answers" %>
+  </div>
+<% end %>

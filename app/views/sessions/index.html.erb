@@ -1,0 +1,8 @@
+<h2>Available Sessions</h2>
+<ul>
+  <% @sessions.each do |session| %>
+    <li>
+      <%= link_to session.name, session_path(session) %>
+    </li>
+  <% end %>
+</ul>
